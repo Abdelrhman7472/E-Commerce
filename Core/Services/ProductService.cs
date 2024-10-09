@@ -29,10 +29,11 @@ namespace Services
             
         }
 
-        public async Task<IEnumerable<ProductResultDTO>> GetAllProductsAsync(string? sort,int?brandId,int?typeId )
+        public async Task<IEnumerable<ProductResultDTO>> GetAllProductsAsync(ProductSpecificationsParameters parameters )
         {  
             // 1 : Retrieve All Products => UnitOfWork (3shan unitOfWork Heya ely betklm el context)
-            var products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync( new ProductWithBrandAndTypeSpecifications(sort,brandId,typeId));
+            var products = await _unitOfWork.GetRepository<Product, int>()
+                .GetAllAsync( new ProductWithBrandAndTypeSpecifications(parameters));
 
             // 2 : Map to product => IMapper: AutoMapper
             var productsResult = _mapper.Map<IEnumerable<ProductResultDTO>>(products);

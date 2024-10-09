@@ -18,28 +18,32 @@ namespace Services.Specifications
             
         }  
         //Use to Get All Products
-        public ProductWithBrandAndTypeSpecifications( string? sort,int?brandId,int?typeId):base(product=>
-        (!brandId.HasValue||product.BrandId==brandId.Value)&&
-        (!typeId.HasValue||product.TypeId == typeId.Value))
+        public ProductWithBrandAndTypeSpecifications(ProductSpecificationsParameters parameters)
+            :base(product=>
+        (!parameters.BrandId.HasValue || product.BrandId == parameters.BrandId)&&
+        (!parameters.TypeId.HasValue || product.TypeId == parameters.TypeId))
         {
             AddInclude(product => product.ProductBrand);
             AddInclude(product => product.ProductType);
             
-            if(!string.IsNullOrWhiteSpace(sort))
+            if(parameters.Sort is not null)
             {
-                switch(sort.ToLower().Trim())
+                switch(parameters.Sort)
                 {
-                    case "pricedesc":
+                    case ProductSortingOptions.pricedesc:
                         SetOrderByDescending(product => product.Price);
                         break;
-                    case "priceasc":
+                    case ProductSortingOptions.priceasc:
                         SetOrderBy(product => product.Price);
                         break;
-                    case "namedesc":
+                    case ProductSortingOptions.namedesc:
                         SetOrderByDescending(product => product.Name);
                         break;
-                        default:
-                        SetOrderBy(product => product.Price);
+                    case ProductSortingOptions.nameasc:
+                        SetOrderBy(product => product.Name);
+                        break;
+
+                    default:
                         break;
                    
                 }

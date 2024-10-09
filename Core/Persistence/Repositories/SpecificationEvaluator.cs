@@ -28,7 +28,7 @@ namespace Persistence.Repositories
                 query=query.OrderBy(specifications.OrderBy);
 
            else if (specifications.OrderByDescending is not null)
-                query = query.OrderBy(specifications.OrderByDescending);
+                query = query.OrderByDescending(specifications.OrderByDescending);
 
 
             return query;

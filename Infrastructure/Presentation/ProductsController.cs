@@ -15,9 +15,9 @@ namespace Presentation
     public class ProductsController(IServiceManager serviceManager):ControllerBase
     {
         [HttpGet("AllProducts")]
-        public async Task<ActionResult<IEnumerable<ProductResultDTO>>> GetAllProducts(string? sort, int? brandId, int? typeId)
+        public async Task<ActionResult<IEnumerable<ProductResultDTO>>> GetAllProducts([FromQuery]ProductSpecificationsParameters parameters)
         {
-            var products = await serviceManager.ProductService.GetAllProductsAsync(sort,brandId,typeId);
+            var products = await serviceManager.ProductService.GetAllProductsAsync(parameters);
             return Ok(products);
         }
 
