@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
 using Services.Specifications;
+using Domain.Exceptions;
 
 namespace Services
 {
@@ -29,7 +30,7 @@ namespace Services
             
         }
 
-        public async Task<IEnumerable<ProductResultDTO>> GetAllProductsAsync(ProductSpecificationsParameters parameters )
+        public async Task<PaginatedResult<ProductResultDTO>> GetAllProductsAsync(ProductSpecificationsParameters parameters )
         {  
             // 1 : Retrieve All Products => UnitOfWork (3shan unitOfWork Heya ely betklm el context)
             var products = await _unitOfWork.GetRepository<Product, int>()
@@ -37,8 +38,19 @@ namespace Services
 
             // 2 : Map to product => IMapper: AutoMapper
             var productsResult = _mapper.Map<IEnumerable<ProductResultDTO>>(products);
-            // 3 : Return Result
-            return productsResult;
+
+             var count= productsResult.Count();
+
+             var totalCount= await _unitOfWork.GetRepository<Product, int>()
+                .CountAysnc(new ProductCountSpecifications(parameters)); ;
+            var result=new PaginatedResult<ProductResultDTO> (
+                parameters.PageIndex
+                , count,
+                totalCount
+                 ,
+                 productsResult);
+            return result; 
+            
         }
 
         public async Task<IEnumerable<TypeResultDTO>> GetAllTypesAsync()
@@ -57,8 +69,8 @@ namespace Services
 
             var product = await _unitOfWork.GetRepository<Product, int>().GetAsync(new ProductWithBrandAndTypeSpecifications(id));
 
-            var productResult=_mapper.Map<ProductResultDTO>(product);
-            return productResult;
+            return product is null ? throw new ProductNotFoundException(id):_mapper.Map<ProductResultDTO>(product);
+            
         }
     }
 }

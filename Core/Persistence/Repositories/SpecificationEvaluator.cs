@@ -13,8 +13,10 @@ namespace Persistence.Repositories
         {
             //inputquery =>Dbset<>
             var query = inputQuery;
-            if(specifications.Criteria is not null)query.Where(specifications.Criteria);
-            
+            if(specifications.Criteria is not null)
+                query = query.Where(specifications.Criteria);
+
+           
             //foreach(var specification in specifications.IncludeExpression)
             //{
             //    query = query.Include(specification);
@@ -30,6 +32,8 @@ namespace Persistence.Repositories
            else if (specifications.OrderByDescending is not null)
                 query = query.OrderByDescending(specifications.OrderByDescending);
 
+           if(specifications.IsPaginated)
+                query = query.Skip(specifications.Skip).Take(specifications.Take);
 
             return query;
         }

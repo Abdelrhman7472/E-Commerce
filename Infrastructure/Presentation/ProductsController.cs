@@ -15,10 +15,11 @@ namespace Presentation
     public class ProductsController(IServiceManager serviceManager):ControllerBase
     {
         [HttpGet("AllProducts")]
-        public async Task<ActionResult<IEnumerable<ProductResultDTO>>> GetAllProducts([FromQuery]ProductSpecificationsParameters parameters)
+        public async Task<ActionResult<PaginatedResult<ProductResultDTO>>> GetAllProducts([FromQuery]ProductSpecificationsParameters parameters)
         {
             var products = await serviceManager.ProductService.GetAllProductsAsync(parameters);
             return Ok(products);
+            //Ok => bet7wl el type beta3y l JSON 
         }
 
         [HttpGet("Brands")]
