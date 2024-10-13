@@ -3,6 +3,7 @@ global using Domain.Contracts;
 global using Microsoft.EntityFrameworkCore;
 global using Persistence;
 global using Persistence.Data;
+using E_Commerce.API.Extensions;
 using E_Commerce.API.Factories;
 using E_Commerce.API.Middlewares;
 using Microsoft.AspNetCore.Mvc;
@@ -20,41 +21,24 @@ namespace E_Commerce.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            #region Services
 
-            builder.Services.AddControllers().AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+            builder.Services.AddCoreServices();
 
-            builder.Services.AddScoped<IDbInitializer,DbInitializer>();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
 
-            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+            builder.Services.AddPresentationServices();
 
-            builder.Services.AddScoped<IServiceManager,ServiceManager>();
-       
-            builder.Services.AddAutoMapper(typeof(Services.AssemblyReference).Assembly);// reference kol el file ely hatstkhdm feh el mapping aw ay assembly me7tago fe scope mo3yn
-            builder.Services.AddDbContext<StoreContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
-            });
+      
 
-
-            builder.Services.Configure<ApiBehaviorOptions> // model state
-                (options =>
-                {
-                    options.InvalidModelStateResponseFactory = ApiResponseFactory.CustomValidationErrorResponse;       // to chnage default model state
-                }
-
-                );
-
-
-
-
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
+            #endregion
             var app = builder.Build();
-            app.UseMiddleware<GlobalErrorHandlingMiddleware>();
-           await InitializeDbAsync(app);
+
+            #region Pipelines
+            await app.SeedDbAsync();
+            app.UseCustomExceptionMiddleWare();
+
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -78,14 +62,10 @@ namespace E_Commerce.API
             app.Run();
 
 
-            async Task InitializeDbAsync(WebApplication app) // hattnfz awl haga fel request
-            {
-                // Create object from  type that implements IDbInitializer (Dependancy Injection)
-                using var scope =app.Services.CreateScope();
-                var dbInitializer =scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-                await dbInitializer.InitializeAsync();
-                
-            }
+            #endregion
+
+           // async Task InitializeDbAsync(WebApplication app) // hattnfz awl haga fel request
+    
         }
     }
 }
