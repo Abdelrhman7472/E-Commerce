@@ -8,9 +8,11 @@ namespace E_Commerce.API.Extensions
         {
 
             // Create object from  type that implements IDbInitializer (Dependancy Injection)
+            // Call it when the app starts before request (3shan a3ml el data seeding awl haga fel request 3andy)
             using var scope = app.Services.CreateScope();
             var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
             await dbInitializer.InitializeAsync();
+            await dbInitializer.InitializeIdentityAsync();
 
 
 

@@ -14,7 +14,7 @@ using Domain.Exceptions;
 namespace Services
 {
     // Ka2nha Controller fe el MVC
-    public class ProductService(IUnitOfWork _unitOfWork,IMapper _mapper) : IProductService
+    public class ProductService(IUnitOfWork _unitOfWork,IMapper _mapper) : Abstractions.IProductService
     {
     
 

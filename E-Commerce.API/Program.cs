@@ -23,7 +23,7 @@ namespace E_Commerce.API
             // Add services to the container.
             #region Services
 
-            builder.Services.AddCoreServices();
+            builder.Services.AddCoreServices(builder.Configuration);
 
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
@@ -53,6 +53,8 @@ namespace E_Commerce.API
             //});                                                             Lw el mkan ely feh el static file msh wwwroot(default) 
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

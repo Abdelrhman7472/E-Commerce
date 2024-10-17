@@ -10,11 +10,13 @@ namespace Persistence.Data
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
+            // Beyakhod el instance w el object w el initalize 3amtn ely 3amlo fel app settings
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // base.on model creating bet3ml configuration ll type ely ana 3aml leha inhert bas hena msh 3ayzha 3shan ana 3amel my own types msh wakhed types gahza
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StoreContext).Assembly);
         }
         public DbSet<Product> Products { get; set; }

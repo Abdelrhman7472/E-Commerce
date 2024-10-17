@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Shared;
 using Shared.ErrorModels;
@@ -11,10 +12,9 @@ using System.Threading.Tasks;
 
 namespace Presentation
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    // lw hatet ba3d "api/[controller]" 3amlt /Action kda esm el action aw el endpoint hayzhar fel Route
-    public class ProductsController(IServiceManager serviceManager):ControllerBase
+
+    [Authorize(Roles ="SuperAdmin")]
+    public class ProductsController(IServiceManager serviceManager): ApiController
     {
         [HttpGet("AllProducts")]
         public async Task<ActionResult<PaginatedResult<ProductResultDTO>>> GetAllProducts([FromQuery]ProductSpecificationsParameters parameters)
