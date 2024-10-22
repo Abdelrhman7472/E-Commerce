@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
-using Shared;
+using Shared.BasketModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

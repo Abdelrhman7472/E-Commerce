@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Entities;
 using Services.Specifications;
 using Domain.Exceptions;
+using Shared.ProductModels;
+using Domain.Entities.ProductEntites;
 
 namespace Services
 {

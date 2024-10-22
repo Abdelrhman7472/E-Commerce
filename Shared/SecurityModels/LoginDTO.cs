@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.SecurityModels
 {
     public record LoginDTO
     {
@@ -14,7 +14,7 @@ namespace Shared
         public string Email { get; init; }
 
         [Required]
-        
+
         public string Password { get; init; }
     }
 

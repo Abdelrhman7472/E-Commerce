@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entities.ProductEntites
 {
-    public class Product:BaseEntity<int>
+    public class Product : BaseEntity<int>
     {
         public string Name { get; set; }
         public string Description { get; set; }

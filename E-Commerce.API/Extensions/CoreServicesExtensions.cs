@@ -1,6 +1,6 @@
 ﻿using Services.Abstractions;
 using Services;
-using Shared;
+using Shared.BasketModels;
 
 namespace E_Commerce.API.Extensions
 {

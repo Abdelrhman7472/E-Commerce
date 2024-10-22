@@ -1,5 +1,5 @@
 ﻿using Services.Abstractions;
-using Shared;
+using Shared.SecurityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

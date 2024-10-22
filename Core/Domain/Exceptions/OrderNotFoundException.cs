@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Domain.Exceptions
 {
-    public record BrandResultDTO
+    public class OrderNotFoundException(Guid id) :NotFoundException($"Order With Id {id} Can't found")
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

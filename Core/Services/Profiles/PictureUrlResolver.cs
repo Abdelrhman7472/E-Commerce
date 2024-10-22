@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Entities;
+using Domain.Entities.ProductEntites;
 using Microsoft.Extensions.Configuration;
+using Shared.ProductModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

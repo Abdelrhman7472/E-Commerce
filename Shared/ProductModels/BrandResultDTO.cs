@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.ProductModels
 {
-    public record TypeResultDTO
+    public record BrandResultDTO
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Entities;
+using Domain.Entities.BasketEntities;
 using Domain.Exceptions;
+using Shared.BasketModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

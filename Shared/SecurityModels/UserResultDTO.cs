@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.SecurityModels
 {
-    public record UserResultDTO(string DisplayName,string Email,string Token);
- 
+    public record UserResultDTO(string DisplayName, string Email, string Token);
+
 }

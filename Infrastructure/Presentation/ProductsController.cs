@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Shared;
 using Shared.ErrorModels;
+using Shared.ProductModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

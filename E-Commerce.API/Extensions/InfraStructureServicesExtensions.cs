@@ -5,12 +5,12 @@ using Persistence.Repositories;
 using StackExchange.Redis;
 using Domain.Contracts;
 using Persistence.Identity;
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Shared;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Shared.BasketModels;
+using Domain.Entities.SecurityEntities;
 namespace E_Commerce.API.Extensions
 {
     public static class InfraStructureServicesExtensions

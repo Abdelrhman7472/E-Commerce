@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.SecurityModels
 {
     public record UserRegisterDTO
     {
-        [Required(ErrorMessage ="DisplayName Is Required")]
+        [Required(ErrorMessage = "DisplayName Is Required")]
         public string DisplayName { get; init; }
 
         [Required(ErrorMessage = "Email Is Required")]

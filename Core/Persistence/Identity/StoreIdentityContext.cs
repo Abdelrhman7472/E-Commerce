@@ -1,9 +1,10 @@
 ﻿global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System;
+global using UserAddress = Domain.Entities.SecurityEntities.Address; using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Entities.SecurityEntities;
 
 namespace Persistence.Identity
 {
@@ -22,7 +23,7 @@ namespace Persistence.Identity
            // w kman el base.OnModelCreating(builder) lw 3andy configurations 3andy hazwedha bas lw ma3ndesh malhash lazma aktebha heya already gahza
           
             base.OnModelCreating(builder);
-            builder.Entity<Address>().ToTable("Addresses");
+            builder.Entity<UserAddress>().ToTable("Addresses");
         }
 
 
