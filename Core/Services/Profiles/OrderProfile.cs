@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Domain.Entities.OrderEntities;
+using UserAddress = Domain.Entities.SecurityEntities.Address;
 using Shared.OrderModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Services.Profiles
 {
@@ -28,6 +30,7 @@ namespace Services.Profiles
             CreateMap<DeliveryMethod, DeliveryMethodResultDTO>();
                 
    
+            CreateMap<AddressDTO, UserAddress>().ReverseMap();
 
 
 

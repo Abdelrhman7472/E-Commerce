@@ -21,7 +21,7 @@ namespace Services
 {
     internal class AuthenticationService(UserManager<User> _userManager,IOptions<JwtOptions> options,IMapper mapper) : IAuthenticationService
     {
-        public async Task<bool> CheckEmailExist(string email)
+        public async Task<bool> CheckEmailExist(string email) //In login , register or in the entire app check if email exist
         {
             var user= await _userManager.FindByEmailAsync(email);
 
