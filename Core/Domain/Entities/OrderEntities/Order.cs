@@ -17,7 +17,8 @@ namespace Domain.Entities.OrderEntities
             , ICollection<OrderItem> orderItems,
             DeliveryMethod deliveryMethod,
             decimal subTotal
-            
+,
+            string paymentIntend
       )
         {
             Id = Guid.NewGuid();// Default value for guid is nafs 3add el arkam bas kolha 0 
@@ -26,8 +27,7 @@ namespace Domain.Entities.OrderEntities
             OrderItems = orderItems;
             DeliveryMethod = deliveryMethod;
             SubTotal = subTotal;
-
-
+            PaymentIntend = paymentIntend;
         }
 
         // User Email 
@@ -55,7 +55,7 @@ namespace Domain.Entities.OrderEntities
         public decimal SubTotal { get; set; }
 
         // payment
-        public string PaymentIntend { get; set; } = string.Empty;
+        public string PaymentIntend { get; set; }
 
         // Order Date
         //DateTimeOffset => bey7seb el wa2t bona2an 3ala el machine ely enta 3aleha 

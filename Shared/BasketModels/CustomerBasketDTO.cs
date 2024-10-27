@@ -11,5 +11,12 @@ namespace Shared.BasketModels
         public string Id { get; init; }
 
         public IEnumerable<BasketItemDTO> Items { get; init; }
+
+        public string? PaymentIntendId { get; set; }
+        public string? ClientSecret { get; set; }
+
+
+        public int? DeliveryMethodId { get; set; }
+        public decimal? ShippingPrice { get; set; }
     }
 }

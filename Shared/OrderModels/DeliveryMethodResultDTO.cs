@@ -12,6 +12,6 @@ namespace Shared.OrderModels
         public string ShortName { get; set; }
         public string Description { get; set; }
         public string DeliveryTime { get; set; } // hatkon zy => With In 3 days , with in 1 Day ....s
-        public decimal Price { get; set; }
+        public decimal Cost { get; set; }
     }
 }

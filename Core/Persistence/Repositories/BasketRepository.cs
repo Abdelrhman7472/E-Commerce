@@ -21,7 +21,7 @@ namespace Persistence.Repositories
             var value =await _database.StringGetAsync(Id);
             if(value.IsNullOrEmpty)
                 return null;
-            return JsonSerializer.Deserialize<CustomerBasket?>(value);
+            return JsonSerializer.Deserialize<CustomerBasket?>(value!);
 
         }
 

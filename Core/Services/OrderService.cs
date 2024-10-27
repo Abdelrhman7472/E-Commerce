@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using OrderAddress = Domain.Entities.OrderEntities.Address;
+using AutoMapper;
 using Domain.Entities.BasketEntities;
 using Domain.Entities.OrderEntities;
 using Domain.Entities.ProductEntites;
@@ -22,13 +23,13 @@ namespace Services
         
           =>  new OrderItem(new ProductInOrderItem(product.Id,product.Name,product.PictureUrl),item.Quantity,product.Price);
 
-        public async Task<OrderResultDTO> CreateOrderAsync(OrderRequest request, string userEmail)
+        public async Task<OrderResultDTO> CreateOrUpdateOrderAsync(OrderRequest request, string userEmail)
         {
             // Address
-            var address=mapper.Map<Address>(request.ShippingAddress);
+            var address=mapper.Map<OrderAddress>(request.shipToAddress);
             // order Items => Basket=>BasketItems=>OrderItems
-            var basket= await basketRepository.GetBasketAsync(request.BaskeyId)
-                ??throw new BasketNotFoundException(request.BaskeyId);
+            var basket= await basketRepository.GetBasketAsync(request.basketId)
+                ??throw new BasketNotFoundException(request.basketId);
             
             var orderItems=new List<OrderItem>();
             foreach(var item in basket.Items)
@@ -39,17 +40,27 @@ namespace Services
 
             }
 
+
             // Delivery
             var deliveryMethod= await unitOfWork.GetRepository<DeliveryMethod,int>().GetAsync(request.DeliveryMethodId)
                 ??throw new DeliveryMethodNotFoundException(request.DeliveryMethodId);
+
+
+            var orderRepo = unitOfWork.GetRepository<Order, Guid>();
+
+            var existingOrder = await orderRepo.
+                GetAsync(new OrderWithPaymentIntentIdSpecifications(basket.PaymentIntendId));
+            if(existingOrder is not null)
+              orderRepo.Delete(existingOrder);
+            
 
             // subtotal
             var subTotal=orderItems.Sum(item=>item.Price* item.Quantity);
 
             // save to DB
-            var order = new Order(userEmail, address,orderItems,deliveryMethod , subTotal);
+            var order = new Order(userEmail, address,orderItems,deliveryMethod , subTotal ,basket.PaymentIntendId);
 
-            await unitOfWork.GetRepository<Order,Guid>().AddAsync(order);
+            await orderRepo.AddAsync(order);
 
 
             await unitOfWork.SaveChangesAsync();

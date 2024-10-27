@@ -46,7 +46,7 @@ namespace Presentation
         }
            
         [Authorize]
-        [HttpGet("Get Address")]
+        [HttpGet("address")]
         public async Task<ActionResult<AddressDTO>> GetAddress()
         {
             var email= User.FindFirstValue(ClaimTypes.Email);

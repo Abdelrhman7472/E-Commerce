@@ -45,7 +45,8 @@ namespace E_Commerce.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseStaticFiles();             
+            app.UseStaticFiles();    
+            app.UseCors("CORSPolicy");
             
             //app.UseStaticFiles(new StaticFileOptions                        Lw el mkan ely feh el static file msh wwwroot(default) 
             //{                                                               Lw el mkan ely feh el static file msh wwwroot(default) 

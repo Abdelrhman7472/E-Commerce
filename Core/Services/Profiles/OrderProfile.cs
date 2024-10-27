@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities.OrderEntities;
+using OrderAddress=Domain.Entities.OrderEntities.Address;
 using UserAddress = Domain.Entities.SecurityEntities.Address;
 using Shared.OrderModels;
 using System;
@@ -15,7 +16,7 @@ namespace Services.Profiles
     {
         public OrderProfile()
         {
-            CreateMap<Address, AddressDTO>().ReverseMap();
+            CreateMap<OrderAddress, AddressDTO>().ReverseMap();
             CreateMap<OrderItem, OrderItemDTO>()
                 .ForMember(d => d.ProductId, options => options.MapFrom(s => s.Product.ProductId))
                 .ForMember(d => d.PictureUrl, options => options.MapFrom(s => s.Product.PictureUrl))
@@ -27,7 +28,8 @@ namespace Services.Profiles
                 .ForMember(d => d.DeliveryMethod, options => options.MapFrom(s => s.DeliveryMethod.ShortName))
                 .ForMember(d => d.Total, options => options.MapFrom(s => s.SubTotal + s.DeliveryMethod.Price));
 
-            CreateMap<DeliveryMethod, DeliveryMethodResultDTO>();
+            CreateMap<DeliveryMethod, DeliveryMethodResultDTO>().ForMember(d=>d.Cost,
+                opt=>opt.MapFrom(s=>s.Price));
                 
    
             CreateMap<AddressDTO, UserAddress>().ReverseMap();

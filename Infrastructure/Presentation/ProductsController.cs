@@ -17,7 +17,7 @@ namespace Presentation
     [Authorize(Roles ="SuperAdmin")]
     public class ProductsController(IServiceManager serviceManager): ApiController
     {
-        [HttpGet("AllProducts")]
+        [HttpGet]
         public async Task<ActionResult<PaginatedResult<ProductResultDTO>>> GetAllProducts([FromQuery]ProductSpecificationsParameters parameters)
         {
             var products = await serviceManager.ProductService.GetAllProductsAsync(parameters);
@@ -25,14 +25,14 @@ namespace Presentation
             //Ok => bet7wl el type beta3y l JSON 
         }
 
-        [HttpGet("Brands")]
+        [HttpGet("brands")]
         public async Task<ActionResult<IEnumerable<BrandResultDTO>>> GetAllBrands()
         {
             var brands = await serviceManager.ProductService.GetAllBrandsAsync();
             return Ok(brands);
 
         }   
-        [HttpGet("Types")]
+        [HttpGet("types")]
         public async Task<ActionResult<IEnumerable<TypeResultDTO>>> GetAllTypes()
         {
             var types = await serviceManager.ProductService.GetAllTypesAsync();

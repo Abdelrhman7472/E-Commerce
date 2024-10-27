@@ -12,7 +12,8 @@ namespace Persistence.Data.Configurations
         {
             builder.OwnsOne(order => order.ShippingAddress, address => address.WithOwner());
 
-            builder.HasMany(order => order.OrderItems).WithOne();// withone bas mn gher => 3shan ana msh 3amel hnak navigational property w heya by default betkon one lw msh 3amel navigational property
+            builder.HasMany(order => order.OrderItems).WithOne().
+                OnDelete(DeleteBehavior.Cascade);// withone bas mn gher => 3shan ana msh 3amel hnak navigational property w heya by default betkon one lw msh 3amel navigational property w 3amlt cascade 3shan ye3ml delete ll items lw 3amlt delete ll order fa yerga3o tani
 
             builder.Property(order=>order.PaymentStatus).HasConversion(s=>s.ToString(), //Convert enum to string in Sql
                 s=>Enum.Parse<OrderPaymentStatus>(s));                                  //Convert enum to string in Sql

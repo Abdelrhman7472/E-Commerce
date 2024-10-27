@@ -15,6 +15,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using UserAddress = Domain.Entities.SecurityEntities.Address;
+
 using System.Threading.Tasks;
 
 namespace Services
@@ -72,7 +74,7 @@ namespace Services
 
             else
             {
-                var userAddress = mapper.Map<Address>(address);
+                var userAddress = mapper.Map<UserAddress>(address);
                 user.Address = userAddress;
             }
 
