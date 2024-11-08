@@ -35,7 +35,7 @@ namespace Presentation
         }
 
         [Authorize]
-        [HttpGet("Get Current User")]
+        [HttpGet]
         public async Task<ActionResult<UserResultDTO>> GetCurrentUser()
         {
             var email= User.FindFirstValue(ClaimTypes.Email);
@@ -57,7 +57,7 @@ namespace Presentation
         }
             
         [Authorize]
-        [HttpPut(" Update Address")] // HttpPut => Like HttpPost but it is used for update
+        [HttpPut("Address")] // HttpPut => Like HttpPost but it is used for update
         public async Task<ActionResult<AddressDTO>> UpdateAddress(AddressDTO address)
         {
             var email= User.FindFirstValue(ClaimTypes.Email);

@@ -26,13 +26,13 @@ namespace Presentation
              return Ok(order);  
         }
 
-        [HttpGet("GetOrders")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderResultDTO>>> GetOrders()
         {
             // User ely taht de a2dar ageb beha values mn el Token beta3y (ay claims ely fel token gowa User Property de
 
-            var email = User.FindFirstValue(ClaimTypes.Email);
-            var orders = await serviceManager.OrderService.GetOrdersByEmailAsync(email);
+            var userEMail = User.FindFirstValue(ClaimTypes.Email);
+            var orders = await serviceManager.OrderService.GetOrdersByEmailAsync(userEMail);
             //return Created();// msh ba2dar ab3t el value nafsha feha hatrg3 el uri bta3 el OrderResultDTO msh el OrderResultDTO nafso
 
             return Ok(orders);

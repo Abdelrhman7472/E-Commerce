@@ -24,7 +24,7 @@ namespace Services.Profiles
 
 
             CreateMap<Order, OrderResultDTO>()
-                .ForMember(d => d.PaymentStatus, options => options.MapFrom(s => s.ToString()))
+                .ForMember(d => d.Status, options => options.MapFrom(s => s.PaymentStatus.ToString()))
                 .ForMember(d => d.DeliveryMethod, options => options.MapFrom(s => s.DeliveryMethod.ShortName))
                 .ForMember(d => d.Total, options => options.MapFrom(s => s.SubTotal + s.DeliveryMethod.Price));
 

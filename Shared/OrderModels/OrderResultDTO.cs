@@ -24,7 +24,7 @@ namespace Shared.OrderModels
         // Collection Navigational Property
 
         // Payment Status
-        public string PaymentStatus { get; init; } // kda kda fl Service haykon 3andy access aghyar el enum l ely ana 3ayzo mn string 
+        public string Status { get; init; } // kda kda fl Service haykon 3andy access aghyar el enum l ely ana 3ayzo mn string 
 
         // Delivery Method 
         public string DeliveryMethod { get; init; }// met7ag fel result bas a3rf esm el DeliveryMethod

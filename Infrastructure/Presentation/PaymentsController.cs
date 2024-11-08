@@ -24,25 +24,16 @@ namespace Presentation
         const string endpointSecret = "whsec_4bb985a3a0936a4eb0f22c8e08fe93fbac0f8fd445b3c07b4a3a98ed1ec8f244";
 
 
-        [HttpPost]
-
-        public async Task<ActionResult> Index()
+        [HttpPost("webHook")]
+        public async Task<ActionResult> WebHook()
         {
             var json=await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
-            try
-            {
-                var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"],
-                    endpointSecret);
 
-                //Handle The Secret
-                Console.WriteLine("Unhandled event type:{0}",stripeEvent.Type);
+            await serviceManager.PaymentService.UpdateOrderPaymentStatus(json, Request.Headers["Stripe-Signature"]!);
 
-                return Ok();
-            }
-            catch(StripeException e)
-            {
-                return BadRequest();
-            }
+            return new EmptyResult();
+            // new EmptyResult 3shan stripe msh metsani meni ay response
+
         }
 
 

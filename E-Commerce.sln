@@ -7,19 +7,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.API", "E-Commerc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3D33657A-462C-4504-BF0D-6C18D53A9D81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Core\Domain\Domain.csproj", "{862A41A2-BCEF-40D1-A4DE-001681583BD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Core\Domain\Domain.csproj", "{862A41A2-BCEF-40D1-A4DE-001681583BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Core\Services\Services.csproj", "{3AE3E57B-88A1-4DA2-BC46-336ABB3B8284}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Core\Services\Services.csproj", "{3AE3E57B-88A1-4DA2-BC46-336ABB3B8284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Abstractions", "Core\Services.Abstractions\Services.Abstractions.csproj", "{07108483-8FB3-49B2-8092-F1EAABB75A23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Abstractions", "Core\Services.Abstractions\Services.Abstractions.csproj", "{07108483-8FB3-49B2-8092-F1EAABB75A23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3E07BB92-E32C-4131-8CF5-ACA6ED960CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Core\Persistence\Persistence.csproj", "{945A7439-74FA-4927-BEF2-270E7B91072E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Core\Persistence\Persistence.csproj", "{945A7439-74FA-4927-BEF2-270E7B91072E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Infrastructure\Presentation\Presentation.csproj", "{65D4241E-2E44-40DF-AB7B-B1A03B1EDE7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Infrastructure\Presentation\Presentation.csproj", "{65D4241E-2E44-40DF-AB7B-B1A03B1EDE7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{E2ABEB5C-7ABE-438C-86F8-91F3E0E2184E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{E2ABEB5C-7ABE-438C-86F8-91F3E0E2184E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminDashboard", "AdminDashboard\AdminDashboard.csproj", "{839DBAF1-3B8E-4D9A-A44E-B831DEF7624D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{E2ABEB5C-7ABE-438C-86F8-91F3E0E2184E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2ABEB5C-7ABE-438C-86F8-91F3E0E2184E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2ABEB5C-7ABE-438C-86F8-91F3E0E2184E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839DBAF1-3B8E-4D9A-A44E-B831DEF7624D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839DBAF1-3B8E-4D9A-A44E-B831DEF7624D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839DBAF1-3B8E-4D9A-A44E-B831DEF7624D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839DBAF1-3B8E-4D9A-A44E-B831DEF7624D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
